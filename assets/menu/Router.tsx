@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, ImageBackground } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './Splash';
