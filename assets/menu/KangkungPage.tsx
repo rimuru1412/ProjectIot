@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ImageBackground, View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { ImageBackground, View, Image, StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
 import database from '@react-native-firebase/database';
 import background from '../image/background.png'
 import header from '../image/headerkangkung.png'
@@ -14,17 +14,18 @@ class KangkungPage extends Component {
             Kelembapan: ' ',
             Suhu: ' ',
             Suhu_air: ' ',
-            PPM: ' '
+            PPM: ' ',
+            buttonValue: 0
         }
     }
 
     componentDidMount() {
+
         database()
             .ref('DHT/Kelembapan/')
             .on('value', snapshot => {
                 this.setState({
                     Kelembapan: snapshot.val()
-
                 })
             })
 
@@ -33,7 +34,6 @@ class KangkungPage extends Component {
             .on('value', snapshot => {
                 this.setState({
                     Suhu: snapshot.val()
-
                 })
             })
 
@@ -42,7 +42,6 @@ class KangkungPage extends Component {
             .on('value', snapshot => {
                 this.setState({
                     Suhu_air: snapshot.val()
-
                 })
             })
 
@@ -51,10 +50,51 @@ class KangkungPage extends Component {
             .on('value', snapshot => {
                 this.setState({
                     PPM: snapshot.val()
-
                 })
             })
+
+        database()
+            .ref('Button/kangkung')
+            .on('value', (snapshot) => {
+                const buttonValue = snapshot.val();
+                this.setState({ buttonValue });
+            })
+
     }
+
+    onPressButton = () => {
+        const newButtonValue = this.state.buttonValue === 0 ? 1 : 0;
+        database()
+            .ref('Button/kangkung')
+            .set(newButtonValue);
+
+        {
+            this.state.buttonValue === 0 && (
+                Alert.alert(
+                    'Mode Kangkung Menyala',
+                    'Ketuk sekali lagi untuk mematikan mode kangkung',
+                    [
+                        { text: 'OK', onPress: () => console.log('OK Pressed') },
+                    ],
+                    { cancelable: false }
+                )
+            )
+        }
+        {
+            this.state.buttonValue === 1 && (
+                Alert.alert(
+                    'Mode Kangkung Mati',
+                    'Ketuk sekali lagi untuk menyalakan mode kangkung',
+                    [
+                        { text: 'OK', onPress: () => console.log('OK Pressed') },
+                    ],
+                    { cancelable: false }
+                )
+            )
+        }
+    }
+
+
     render() {
         return (
             <View>
@@ -63,13 +103,13 @@ class KangkungPage extends Component {
                         <View style={{ alignItems: 'center' }}>
                             <Image source={header} style={styles.headernya} />
                         </View>
-                        <View style={{ alignItems: 'center', marginTop: 50 }}>
-                            <Text style={{ fontSize: 15, fontWeight: 'bold', marginBottom: 5, fontFamily: 'Poppins-SemiBold' }}>Grafik TDS</Text>
+                        <View style={{ alignItems: 'center', marginTop: 25 }}>
+                            <Text style={{ fontSize: 15, fontWeight: 'bold', marginBottom: 2, fontFamily: 'Poppins-SemiBold' }}>Grafik TDS</Text>
                             <ImageBackground source={wrappertds} style={{ width: 294, height: 90, }} >
                                 <Text style={{ fontSize: 15, textAlign: 'center', marginTop: 32, fontFamily: 'Poppins-SemiBold' }}>{this.state.PPM}</Text>
                             </ImageBackground>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 40 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 25 }}>
                             <View>
                                 <ImageBackground source={wrappersubmenu} style={styles.wrappersubmenu} >
                                     <Text style={styles.textwrappermenu}>{this.state.Suhu_air}</Text>
@@ -89,11 +129,13 @@ class KangkungPage extends Component {
                                 <Text style={styles.textnya}>Kelembapan</Text>
                             </View>
                         </View>
-                        <View style={{ alignItems: 'center', marginTop: 30 }}>
-                            <Text style={{ color: 'white', fontSize: 15, fontWeight: '600', marginBottom: -10, fontFamily: 'Poppins-SemiBold' }}>AB MIX</Text>
-                            <TouchableOpacity>
+                        <View style={{ alignItems: 'center', marginTop: 25 }}>
+                            <Text style={{ color: 'white', fontSize: 15, fontWeight: '600', marginBottom: -15, fontFamily: 'Poppins-SemiBold' }}>AB MIX</Text>
+                            <TouchableOpacity onPress={this.onPressButton}>
                                 <Image source={abmix} />
                             </TouchableOpacity>
+                            <Text style={{ color: 'white', fontSize: 15, fontWeight: '600', textAlign: 'center', fontFamily: 'Poppins-SemiBold', marginTop: -15 }}>{this.state.buttonValue === 1 ? 'ON' : 'OFF'}</Text>
+
                         </View>
                     </View>
                 </ImageBackground >
