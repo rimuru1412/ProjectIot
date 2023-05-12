@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { ImageBackground, View, Image, StyleSheet, Text, TouchableOpacity, Alert, Dimensions, ScrollView } from "react-native";
 import database from '@react-native-firebase/database';
-import { LineChart } from "react-native-chart-kit"
 import background from '../image/background.png'
 import header from '../image/headerpakcoy.png'
-import wrappertds from '../image/wrappertds.png'
 import wrappersubmenu from '../image/wrappersubmenu.png'
 import abmix from '../image/abmix.png'
-import * as Svg from 'react-native-svg';
-import { firebase } from "@react-native-firebase/database";
+import Graph from "./Graph";
 
 
 class PakcoyPage extends Component {
@@ -65,22 +62,15 @@ class PakcoyPage extends Component {
                 this.setState({ buttonValue });
             })
 
-        // database()
-        //     .ref('TDS')
-        //     .on('value', snapshot => {
-        //         let dataPoints = [];
-        //         snapshot.forEach(childSnapshot => {
-        //             dataPoints.push(childSnapshot.val().PPM);
-        //         });
-        //         this.setState({ data: dataPoints });
-        //     });
-
-        // database()
-        // .ref('/TDS/PPM')
-        // .on('value', snapshot => {
-        //     const data = snapshot.val();
-        //     this.setState({ data });
-        // });
+        database()
+            .ref('TDS')
+            .on('value', snapshot => {
+                let dataPoints = [];
+                snapshot.forEach(childSnapshot => {
+                    dataPoints.push(childSnapshot.val().PPM);
+                });
+                this.setState({ data: dataPoints });
+            });
 
     }
 
@@ -120,19 +110,15 @@ class PakcoyPage extends Component {
     render() {
 
         return (
-            <View>
+            <ScrollView>
                 <ImageBackground source={background} style={{ width: Dimensions.get("window").width, height: Dimensions.get("window").height }}>
                     <View>
                         <View style={{ alignItems: 'center' }}>
                             <Image source={header} style={styles.headernya} />
                         </View>
-                        <View style={{ alignItems: 'center', marginTop: 25 }}>
-                            <Text style={{ fontSize: 15, fontWeight: 'bold', marginBottom: 2, fontFamily: 'Poppins-SemiBold' }}>Grafik TDS</Text>
-                            {/* <ImageBackground source={wrappertds} style={{ width: 294, height: 90, }} >
-                                <Text style={{ fontSize: 15, textAlign: 'center', marginTop: 32, fontFamily: 'Poppins-SemiBold' }}>{this.state.PPM}</Text>
-                            </ImageBackground> */}
-                            {/* Untuk grafik */}
-                            <LineChart
+                        <View style={{ alignItems: 'center', marginTop: 10 }}>
+                            <Text style={{ fontSize: 15, fontWeight: 'bold', fontFamily: 'Poppins-SemiBold' }}>Grafik TDS</Text>
+                            {/* <LineChart
                                 data={{
                                     labels: ["January", "February", "March", "April", "May", "June"],
                                     datasets: [
@@ -169,9 +155,10 @@ class PakcoyPage extends Component {
                                     marginRight: 10,
                                     marginLeft: 12
                                 }}
-                            />
+                            /> */}
+                            <Graph />
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 25 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 5 }}>
                             <View>
                                 <ImageBackground source={wrappersubmenu} style={styles.wrappersubmenu} >
                                     <Text style={styles.textwrappermenu}>{this.state.Suhu_air}</Text>
@@ -201,7 +188,7 @@ class PakcoyPage extends Component {
                         </View>
                     </View>
                 </ImageBackground >
-            </View >
+            </ScrollView>
         )
     }
 }

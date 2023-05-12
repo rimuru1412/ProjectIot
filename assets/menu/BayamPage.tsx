@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { ImageBackground, View, Image, StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
+import { ImageBackground, View, Image, StyleSheet, Text, TouchableOpacity, Alert, ScrollView, Dimensions } from "react-native";
 import database from '@react-native-firebase/database';
 import background from '../image/background.png'
 import header from '../image/headerbayam.png'
 import wrappertds from '../image/wrappertds.png'
 import wrappersubmenu from '../image/wrappersubmenu.png'
 import abmix from '../image/abmix.png'
+import Graph from "./Graph";
 
 
 class BayamPage extends Component {
@@ -100,19 +101,17 @@ class BayamPage extends Component {
 
     render() {
         return (
-            <View>
-                <ImageBackground source={background} style={{ width: '100%', height: '100%' }}>
+            <ScrollView>
+                <ImageBackground source={background} style={{ width: Dimensions.get("window").width, height: Dimensions.get("window").height }}>
                     <View>
                         <View style={{ alignItems: 'center' }}>
                             <Image source={header} style={styles.headernya} />
                         </View>
-                        <View style={{ alignItems: 'center', marginTop: 25 }}>
-                            <Text style={{ fontSize: 15, fontWeight: 'bold', marginBottom: 2, fontFamily: 'Poppins-SemiBold' }}>Grafik TDS</Text>
-                            <ImageBackground source={wrappertds} style={{ width: 294, height: 90, }} >
-                                <Text style={{ fontSize: 15, textAlign: 'center', marginTop: 32, fontFamily: 'Poppins-SemiBold' }}>{this.state.PPM}</Text>
-                            </ImageBackground>
+                        <View style={{ alignItems: 'center', marginTop: 10 }}>
+                            <Text style={{ fontSize: 15, fontWeight: 'bold', fontFamily: 'Poppins-SemiBold' }}>Grafik TDS</Text>
+                            <Graph />
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 25 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 5 }}>
                             <View>
                                 <ImageBackground source={wrappersubmenu} style={styles.wrappersubmenu} >
                                     <Text style={styles.textwrappermenu}>{this.state.Suhu_air}</Text>
@@ -142,7 +141,7 @@ class BayamPage extends Component {
                         </View>
                     </View>
                 </ImageBackground >
-            </View >
+            </ScrollView >
         )
     }
 }

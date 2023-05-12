@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, ImageBackground, View } from 'react-native';
+import { Image, StyleSheet, ImageBackground, View, VirtualizedList } from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BottomTabBar, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './Splash';
 import KangkungPage from './KangkungPage';
 import BayamPage from './BayamPage';
@@ -18,12 +18,14 @@ const Tab = createBottomTabNavigator();
 
 const HomeScreen = () => {
     return (
-        <Tab.Navigator screenOptions={{
-            tabBarStyle: { height: 65, position: 'absolute' }, headerShown: false, tabBarShowLabel: false,
-            tabBarBackground: () => (
-                <ImageBackground source={footerpage} style={{ height: 65, backgroundColor: '#0B8C76' }} />
-            )
-        }}>
+        <Tab.Navigator
+            screenOptions={{
+
+                tabBarStyle: { height: 65, position: 'absolute' }, headerShown: false, tabBarShowLabel: false,
+                tabBarBackground: () => (
+                    <ImageBackground source={footerpage} style={{ height: 65, backgroundColor: '#0B8C76' }} />
+                )
+            }}>
             <Tab.Screen name="Pakcoy" component={PakcoyPage} options={{
                 tabBarIcon: ({ focused }) => (
                     <Image source={pakcoy} style={styles.logosayur} />
@@ -51,6 +53,10 @@ const Router = () => {
                 <Stack.Screen name='Screen' component={HomeScreen} />
             </Stack.Navigator>
         </NavigationContainer>
+
+        // <View>
+        //     <NewGraph />
+        // </View>
 
 
     )

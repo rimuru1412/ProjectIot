@@ -28,7 +28,7 @@ const Splash = ({ navigation }) => {
 const styles = StyleSheet.create({
   judul: { fontSize: 20, fontWeight: 'bold', fontFamily: 'Poppins-SemiBold' },
   text: { fontSize: 12, fontFamily: 'Poppins-SemiBold' },
-  logo1: { width: 162, height: 108, marginTop: 79 },
+  logo1: { width: 162, height: 108, marginTop: 179 },
   logo2: { width: 129, height: 33, marginTop: 20 }
 })
 
