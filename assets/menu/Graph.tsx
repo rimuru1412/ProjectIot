@@ -10,7 +10,9 @@ const Graph = () => {
 
     useEffect(() => {
         database()
-            .ref('TDS').on("value", (snapshot) => {
+            .ref('TDS')
+            .limitToLast(50)
+            .on("value", (snapshot) => {
                 let data = snapshot.val();
                 let values = Object.values(data);
                 setFbData(values);

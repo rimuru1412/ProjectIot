@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, Dimensions } from "react-native";
 import logoipb from '../image/logoipb.png';
 import logorh from "../image/logorh.png";
+
+const { height, width } = Dimensions.get('window')
 
 const Splash = ({ navigation }) => {
   useEffect(() => {

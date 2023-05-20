@@ -11,6 +11,7 @@ import bayam from '../image/bayam.png';
 import kangkung from '../image/kangkung.png';
 import pakcoy from '../image/pakcoy.png'
 import footerpage from '../image/footer.png'
+import Graph from './Graph';
 
 
 const Stack = createNativeStackNavigator();
@@ -55,7 +56,7 @@ const Router = () => {
         </NavigationContainer>
 
         // <View>
-        //     <NewGraph />
+        //     <Graph />
         // </View>
 
 
