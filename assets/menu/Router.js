@@ -56,7 +56,7 @@ const Router = () => {
         </NavigationContainer>
 
         // <View>
-        //     <Graph />
+        //     <Splash />
         // </View>
 
 
