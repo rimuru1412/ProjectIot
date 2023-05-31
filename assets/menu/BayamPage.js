@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ImageBackground, View, Image, StyleSheet, Text, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import database from '@react-native-firebase/database';
-import background from '../image/background.png'
+import background from '../image/bgbayam.png'
 import header from '../image/headerbayam.png'
 import abmix from '../image/abmix.png'
 import Graph from "./Graph";
@@ -128,7 +128,7 @@ class BayamPage extends Component {
                             </View>
 
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginLeft: responsiveWidth(1.7), marginTop: responsiveHeight(0.3) }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginLeft: responsiveWidth(1.7), marginTop: responsiveHeight(1) }}>
                             <View style={{ marginRight: responsiveWidth(1.4) }}>
                                 <View style={styles.wrappermenu}>
                                     <Text style={styles.textwrapper}>{this.state.PPM}</Text>
@@ -145,11 +145,11 @@ class BayamPage extends Component {
 
                         </View>
                         <View style={{ alignItems: 'center' }}>
-                            <Text style={{ color: 'white', fontSize: responsiveFontSize(1.6), fontWeight: 'bold', marginBottom: responsiveHeight(-2), fontFamily: 'Poppins-SemiBold' }}>AB MIX</Text>
+                            <Text style={{ color: 'black', fontSize: responsiveFontSize(1.6), fontWeight: 'bold', marginBottom: responsiveHeight(-2), fontFamily: 'Poppins-SemiBold' }}>AB MIX</Text>
                             <TouchableOpacity onPress={this.onPressButton}>
                                 <Image style={{ width: responsiveWidth(25), height: responsiveHeight(14) }} source={abmix} />
                             </TouchableOpacity>
-                            <Text style={{ color: 'white', fontSize: responsiveFontSize(1.6), fontWeight: 'bold', textAlign: 'center', fontFamily: 'Poppins-SemiBold', marginTop: responsiveHeight(-2) }}>{this.state.buttonValue === 1 ? 'ON' : 'OFF'}</Text>
+                            <Text style={{ color: 'black', fontSize: responsiveFontSize(1.6), fontWeight: 'bold', textAlign: 'center', fontFamily: 'Poppins-SemiBold', marginTop: responsiveHeight(-2) }}>{this.state.buttonValue === 1 ? 'ON' : 'OFF'}</Text>
 
                         </View>
                     </View>

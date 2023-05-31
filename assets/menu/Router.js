@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, ImageBackground, View, VirtualizedList } from 'react-native';
+import { Image, StyleSheet, ImageBackground } from 'react-native';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { BottomTabBar, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from './Splash';
 import KangkungPage from './KangkungPage';
 import BayamPage from './BayamPage';
@@ -12,6 +12,7 @@ import kangkung from '../image/kangkung.png';
 import pakcoy from '../image/pakcoy.png'
 import footerpage from '../image/footer.png'
 import Graph from './Graph';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -54,11 +55,6 @@ const Router = () => {
                 <Stack.Screen name='Screen' component={HomeScreen} />
             </Stack.Navigator>
         </NavigationContainer>
-
-        // <View>
-        //     <Splash />
-        // </View>
-
 
     )
 }
