@@ -46,15 +46,12 @@ class KangkungPage extends Component {
             })
 
         database()
-            .ref('TDS')
-            .limitToLast(1)
+            .ref('PPM/realtime')
             .on('value', snapshot => {
-                let dataPoints = [];
-                snapshot.forEach(childSnapshot => {
-                    dataPoints.push(childSnapshot.val().PPM);
-                });
-                this.setState({ PPM: dataPoints });
-            });
+                this.setState({
+                    PPM: snapshot.val()
+                })
+            })
 
         database()
             .ref('Button/kangkung')
@@ -158,7 +155,7 @@ class KangkungPage extends Component {
 }
 const styles = StyleSheet.create({
 
-    headernya: { width: responsiveWidth(80.4), height: responsiveHeight(13), marginTop: responsiveHeight(-1.4) },
+    headernya: { resizeMode: 'contain', width: responsiveWidth(80.4), height: responsiveHeight(13), marginTop: responsiveHeight(-1.4) },
     subjudul: { fontSize: responsiveFontSize(1.6), color: '#DCEF32', marginTop: responsiveHeight(0.1), textAlign: 'center', fontFamily: 'Poppins-SemiBold' },
     textwrapper: { textAlign: 'center', marginTop: responsiveHeight(4.3), fontSize: responsiveFontSize(1.7), fontFamily: 'Poppins-SemiBold', color: '#000000' },
     wrappermenu: { width: responsiveHeight(11), height: responsiveHeight(11), backgroundColor: '#DCEF32', borderRadius: 15 }

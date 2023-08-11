@@ -7,11 +7,12 @@ import Splash from './Splash';
 import KangkungPage from './KangkungPage';
 import BayamPage from './BayamPage';
 import PakcoyPage from './PakcoyPage';
+import MistingPage from './MistingPage'
 import bayam from '../image/bayam.png';
 import kangkung from '../image/kangkung.png';
 import pakcoy from '../image/pakcoy.png'
 import footerpage from '../image/footer.png'
-import Graph from './Graph';
+import air from '../image/air.png'
 
 
 
@@ -43,6 +44,11 @@ const HomeScreen = () => {
                     <Image source={bayam} style={styles.logosayur} />
                 )
             }} />
+            <Tab.Screen name="Misting" component={MistingPage} options={{
+                tabBarIcon: ({ focused }) => (
+                    <Image source={air} style={styles.logoair} />
+                )
+            }} />
         </Tab.Navigator>
     )
 }
@@ -61,6 +67,7 @@ const Router = () => {
 
 
 const styles = StyleSheet.create({
-    logosayur: { width: 50, height: 50 }
+    logosayur: { width: 50, height: 50 },
+    logoair: { width: 40, height: 40 }
 })
 export default Router;
