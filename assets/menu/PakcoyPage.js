@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { ImageBackground, View, Image, StyleSheet, Text, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faToggleOn } from '@fortawesome/free-solid-svg-icons/faToggleOn'
+import { faToggleOff } from '@fortawesome/free-solid-svg-icons/faToggleOff'
 import database from '@react-native-firebase/database';
 import background from '../image/bgpakcoy.png'
 import header from '../image/headerpakcoy.png'
-import abmix from '../image/abmix.png'
 import Graph from "./Graph";
 
 
@@ -143,12 +145,11 @@ class PakcoyPage extends Component {
                             </View>
 
                         </View>
-                        <View style={{ alignItems: 'center' }}>
-                            <Text style={{ color: 'black', fontSize: responsiveFontSize(1.6), fontWeight: 'bold', marginBottom: responsiveHeight(-2), fontFamily: 'Poppins-SemiBold' }}>AB MIX</Text>
+                        <View style={{ alignItems: 'center', marginTop: responsiveWidth(3) }}>
+                            <Text style={{ color: 'black', fontSize: responsiveFontSize(1.6), fontWeight: 'bold', marginBottom: responsiveWidth(1), fontFamily: 'Poppins-SemiBold' }}>AB MIX</Text>
                             <TouchableOpacity onPress={this.onPressButton}>
-                                <Image style={{ width: responsiveWidth(25), height: responsiveHeight(14) }} source={abmix} />
+                                <Text style={{ color: 'white', fontSize: responsiveFontSize(40), fontWeight: 'bold', textAlign: 'center', fontFamily: 'Poppins-SemiBold' }}>{this.state.buttonValue === 1 ? <FontAwesomeIcon style={{ color: '#EC008C' }} icon={faToggleOn} size={60} /> : <FontAwesomeIcon icon={faToggleOff} style={{ color: '#EC008C' }} size={60} />}</Text>
                             </TouchableOpacity>
-                            <Text style={{ color: 'black', fontSize: responsiveFontSize(1.6), fontWeight: 'bold', textAlign: 'center', fontFamily: 'Poppins-SemiBold', marginTop: responsiveHeight(-2) }}>{this.state.buttonValue === 1 ? 'ON' : 'OFF'}</Text>
 
                         </View>
                     </View>
@@ -161,7 +162,7 @@ class PakcoyPage extends Component {
 
 const styles = StyleSheet.create({
     headernya: { resizeMode: 'contain', width: responsiveWidth(80.4), height: responsiveHeight(13), marginTop: responsiveHeight(-1.4) },
-    subjudul: { fontSize: responsiveFontSize(1.6), color: '#DCEF32', marginTop: responsiveHeight(0.1), textAlign: 'center', fontFamily: 'Poppins-SemiBold' },
+    subjudul: { fontSize: responsiveFontSize(1.6), color: '#000000', marginTop: responsiveHeight(0.1), textAlign: 'center', fontFamily: 'Poppins-SemiBold' },
     textwrapper: { textAlign: 'center', marginTop: responsiveHeight(4.3), fontSize: responsiveFontSize(1.7), fontFamily: 'Poppins-SemiBold', color: '#000000' },
     wrappermenu: { width: responsiveHeight(11), height: responsiveHeight(11), backgroundColor: '#DCEF32', borderRadius: 15 }
 
